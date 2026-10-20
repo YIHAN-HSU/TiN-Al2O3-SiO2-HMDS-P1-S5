@@ -16,8 +16,8 @@
 | 六個模型／係數檔案雜湊 | PASS | 原 TiN 三檔、Al₂O₃ v1.2 原始 Python、SU Python 與 JSON 均逐位元組未變 |
 | Git 歷史與公開快照掃描 | PASS | 原歷史 1,339 物件／1,064 blobs；未發現所掃描 Token／私密金鑰型態；648 條私有歷史路徑，因此不推送舊歷史。公開快照白名單不含 DB／客戶樣本／本機工具；機密掃描不是權利或完整無機密的法律保證 |
 | 本機 Docker | NOT RUN | 未安裝可用 Docker Desktop／WSL；已提供實際 Docker CI 工作流程 |
-| GitHub 原始碼上傳 | FAIL（授權待處理） | Connector 寫入回傳 403 Resource not accessible by integration；Repository 既存且為空，未上傳原始碼 |
-| GitHub Actions Docker | NOT RUN | 未上傳工作流程，無實際 CI 執行 |
+| GitHub 原始碼上傳 | PASS（Git CLI／GCM） | Connector 仍回傳 403；改用本機 Git／GCM 成功正常推送既有 Repository main，首次提交 7ad8b2525ed3f18247e79a02fe36c064c9b4fb83；Dockerfile 已包含 |
+| GitHub Actions Docker | 待確認 | 工作流程已隨 main 上傳，須依 GitHub Actions 實際結果驗收 |
 | Render HTTPS | NOT RUN | Render Dashboard 顯示登入頁，尚未完成帳號授權／建站 |
 | Render 重新部署／公開並行 | NOT RUN | 必須在 Render 部署成功後實際執行，不以 localhost 代替 |
 
@@ -50,6 +50,8 @@ SU 僅為既有假設模型的內部情境分數，並非物理吸附自由能�
 - package.json、tsconfig.json、scripts/build-public.mjs、tests/public-regression.ts、tests/http-acceptance.ts：公開啟動、建置與實際驗收。
 - Dockerfile、render.yaml、.env.example、.gitignore、.dockerignore、.github/workflows/public-deployment.yml、README 與部署文件：容器、CI、環境設定與資料排除。
 
+- 核對 Node 官方 Bookworm 映像後補入 libatomic1，確保將 Node 執行檔移入 Python 基底時保留所需系統函式庫；實際 Linux 容器驗收仍待 CI。
+
 ## 仍待完成
 
-Docker Linux 建置／執行須由 CI 或安裝完成的 Docker 引擎驗證。GitHub 可管理的 App 安裝查詢結果為空；Render 帳號登入、GitHub App 選定 Repository 的寫入授權與公開 URL 驗收仍需完成。免費 Render 資源的記憶體／冷啟動／多人負載未驗收；不可宣稱已正式上線。未授權任何付費方案或購買磁碟。
+Docker Linux 建置／執行須由 CI 或安裝完成的 Docker 引擎驗證。GitHub Connector 查詢的可管理 App 安裝結果為空，且仍遭 403，但本機 Git CLI／GCM 推送已成功；不需要繼續重試該 Connector 寫入。Render 登入／建立 Web Service 與公開 URL 驗收仍需完成。免費 Render 資源的記憶體／冷啟動／多人負載未驗收；不可宣稱已正式上線。未授權任何付費方案或購買磁碟。

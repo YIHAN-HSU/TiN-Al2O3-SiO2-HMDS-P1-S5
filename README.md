@@ -40,7 +40,7 @@ docker run --rm --read-only --tmpfs /tmp -p 10000:10000 -e PORT=10000 p1-s5-publ
 
 ## 目前部署狀態
 
-GitHub Connector 可讀取帳號／Repository，但寫入回傳 403 Resource not accessible by integration，因此尚未上傳原始碼。Render 尚未登入，沒有已驗證的公開 HTTPS 位址。請先完成 GitHub 寫入權限與 Render 登入。
+GitHub Connector 寫入曾回傳 403 Resource not accessible by integration；依使用者指示改用本機 Git CLI／Git Credential Manager，已成功推送 main（首次提交 7ad8b2525ed3f18247e79a02fe36c064c9b4fb83），包含 Dockerfile 與 render.yaml。Render 尚待登入／建立 Web Service，尚無已驗證的公開 HTTPS 位址。
 
 ## GitHub 與更新
 
