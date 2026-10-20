@@ -52,7 +52,7 @@ SU 僅為既有假設模型的內部情境分數，並非物理吸附自由能�
 
 - 核對 Node 官方 Bookworm 映像後補入 libatomic1，確保將 Node 執行檔移入 Python 基底時保留所需系統函式庫；實際 Linux 容器驗收仍待 CI。
 
-- GitHub Linux CI 實際發現 RDKit Draw 缺少 libXrender.so.1；已在 Dockerfile 補入 libxrender1／libxext6，並新增 Draw／3D 匯入預檢。回歸失敗只對固定測試分子輸出診斷，不向公開 API 回傳伺服器內部錯誤。
+- GitHub Linux CI 實際發現 RDKit Draw 缺少 libXrender.so.1；已在 Dockerfile 補入 libxrender1／libxext6／libexpat1，並新增 Draw／3D 匯入預檢。回歸失敗只對固定測試分子輸出診斷，不向公開 API 回傳伺服器內部錯誤。
 
 ## 仍待完成
 

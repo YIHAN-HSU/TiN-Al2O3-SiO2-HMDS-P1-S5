@@ -4,12 +4,13 @@ FROM python:3.12-slim-bookworm
 COPY --from=node-runtime /usr/local/bin/node /usr/local/bin/node
 COPY --from=node-runtime /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
- && apt-get update && apt-get install -y --no-install-recommends libgomp1 libstdc++6 libatomic1 libxrender1 libxext6 \
+ && apt-get update && apt-get install -y --no-install-recommends libgomp1 libstdc++6 libatomic1 libxrender1 libxext6 libexpat1 \
  && rm -rf /var/lib/apt/lists/* \
  && useradd --create-home --uid 10001 app
 WORKDIR /app
 COPY package.json package-lock.json requirements.txt ./
 RUN npm ci --no-audit --no-fund && python -m pip install --no-cache-dir -r requirements.txt
+RUN ldd /usr/local/lib/python3.12/site-packages/rdkit/Chem/Draw/rdMolDraw2D*.so | grep "not found" || true
 RUN python -c "from rdkit.Chem import Draw, AllChem; import numpy; print('RDKit drawing/3D backend imports OK')"
 COPY . .
 RUN PUBLIC_DIST_DIR=dist npm run build:public
