@@ -17,7 +17,7 @@
 | Git 歷史與公開快照掃描 | PASS | 原歷史 1,339 物件／1,064 blobs；未發現所掃描 Token／私密金鑰型態；648 條私有歷史路徑，因此不推送舊歷史。公開快照白名單不含 DB／客戶樣本／本機工具；機密掃描不是權利或完整無機密的法律保證 |
 | 本機 Docker | NOT RUN | 未安裝可用 Docker Desktop／WSL；已提供實際 Docker CI 工作流程 |
 | GitHub 原始碼上傳 | PASS（Git CLI／GCM） | Connector 仍回傳 403；改用本機 Git／GCM 成功正常推送既有 Repository main，首次提交 7ad8b2525ed3f18247e79a02fe36c064c9b4fb83；Dockerfile 已包含 |
-| GitHub Actions Docker | 待確認 | 工作流程已隨 main 上傳，須依 GitHub Actions 實際結果驗收 |
+| GitHub Actions Docker | PASS | Run #5（ecfc31283bece93f511c3d00966f3517e63020b2）：Linux 映像建置、非 root／唯讀容器 43 項回歸（0 失敗）、HTTP 驗收均成功；https://github.com/YIHAN-HSU/TiN-Al2O3-SiO2-HMDS-P1-S5/actions/runs/39386672515 |
 | Render HTTPS | NOT RUN | Render Dashboard 顯示登入頁，尚未完成帳號授權／建站 |
 | Render 重新部署／公開並行 | NOT RUN | 必須在 Render 部署成功後實際執行，不以 localhost 代替 |
 
@@ -56,4 +56,4 @@ SU 僅為既有假設模型的內部情境分數，並非物理吸附自由能�
 
 ## 仍待完成
 
-Docker Linux 建置／執行須由 CI 或安裝完成的 Docker 引擎驗證。GitHub Connector 查詢的可管理 App 安裝結果為空，且仍遭 403，但本機 Git CLI／GCM 推送已成功；不需要繼續重試該 Connector 寫入。Render 登入／建立 Web Service 與公開 URL 驗收仍需完成。免費 Render 資源的記憶體／冷啟動／多人負載未驗收；不可宣稱已正式上線。未授權任何付費方案或購買磁碟。
+Linux Docker 建置／執行已由 GitHub Actions 實際驗證通過（Node 24.22.0、Python 3.12、RDKit 2026.9.1）；本機 Docker 仍因未安裝而為 NOT RUN。GitHub Connector 查詢的可管理 App 安裝結果為空，且仍遭 403，但本機 Git CLI／GCM 推送已成功；不需要繼續重試該 Connector 寫入。Render 登入／建立 Web Service 與公開 URL 驗收仍需完成。免費 Render 資源的記憶體／冷啟動／多人負載未驗收；不可宣稱已正式上線。未授權任何付費方案或購買磁碟。

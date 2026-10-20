@@ -36,7 +36,7 @@ docker run --rm --read-only --tmpfs /tmp p1-s5-public npm run test:public
 docker run --rm --read-only --tmpfs /tmp -p 10000:10000 -e PORT=10000 p1-s5-public
 ~~~
 
-本次工作站沒有 Docker Desktop／WSL，故本機 Docker 驗收為 NOT RUN；不可把 Windows 測試當成 Linux 容器通過。GitHub Actions 會實際 build、執行模型回歸及 HTTP 測試；部署前須確認該工作流程成功。
+本次工作站沒有 Docker Desktop／WSL，故本機 Docker 驗收為 NOT RUN；不可把 Windows 測試當成 Linux 容器通過。GitHub Actions 已實際完成 Linux build、43 項模型／公開模式回歸（0 失敗）及 HTTP 測試：[成功紀錄](https://github.com/YIHAN-HSU/TiN-Al2O3-SiO2-HMDS-P1-S5/actions/runs/39386672515)。未將 localhost 結果當成 Docker 結果。
 
 ## 目前部署狀態
 
