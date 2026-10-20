@@ -52,6 +52,8 @@ SU 僅為既有假設模型的內部情境分數，並非物理吸附自由能�
 
 - 核對 Node 官方 Bookworm 映像後補入 libatomic1，確保將 Node 執行檔移入 Python 基底時保留所需系統函式庫；實際 Linux 容器驗收仍待 CI。
 
+- GitHub Linux CI 實際發現 RDKit Draw 缺少 libXrender.so.1；已在 Dockerfile 補入 libxrender1／libxext6，並新增 Draw／3D 匯入預檢。回歸失敗只對固定測試分子輸出診斷，不向公開 API 回傳伺服器內部錯誤。
+
 ## 仍待完成
 
 Docker Linux 建置／執行須由 CI 或安裝完成的 Docker 引擎驗證。GitHub Connector 查詢的可管理 App 安裝結果為空，且仍遭 403，但本機 Git CLI／GCM 推送已成功；不需要繼續重試該 Connector 寫入。Render 登入／建立 Web Service 與公開 URL 驗收仍需完成。免費 Render 資源的記憶體／冷啟動／多人負載未驗收；不可宣稱已正式上線。未授權任何付費方案或購買磁碟。

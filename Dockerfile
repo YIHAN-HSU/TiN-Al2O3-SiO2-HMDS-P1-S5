@@ -4,7 +4,7 @@ FROM python:3.12-slim-bookworm
 COPY --from=node-runtime /usr/local/bin/node /usr/local/bin/node
 COPY --from=node-runtime /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
- && apt-get update && apt-get install -y --no-install-recommends libgomp1 libstdc++6 libatomic1 \
+ && apt-get update && apt-get install -y --no-install-recommends libgomp1 libstdc++6 libatomic1 libxrender1 libxext6 \
  && rm -rf /var/lib/apt/lists/* \
  && useradd --create-home --uid 10001 app
 WORKDIR /app
