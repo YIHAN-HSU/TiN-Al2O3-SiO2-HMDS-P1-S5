@@ -10,6 +10,7 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
 WORKDIR /app
 COPY package.json package-lock.json requirements.txt ./
 RUN npm ci --no-audit --no-fund && python -m pip install --no-cache-dir -r requirements.txt
+RUN python -c "from rdkit.Chem import Draw, AllChem; import numpy; print('RDKit drawing/3D backend imports OK')"
 COPY . .
 RUN PUBLIC_DIST_DIR=dist npm run build:public
 ENV NODE_ENV=production S5_PUBLIC_MODE=1 PUBLIC_DIST_DIR=dist PUBLIC_MAX_CONCURRENCY=1 \
