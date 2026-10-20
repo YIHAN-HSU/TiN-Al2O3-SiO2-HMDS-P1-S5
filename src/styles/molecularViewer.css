@@ -1,0 +1,29 @@
+/* Stack the existing WebGL controls before they intersect on small containers.
+   The camera fits the remaining viewport; the canvas is never stretched. */
+.molecular-viewer {
+  container-type: inline-size;
+}
+
+@container (max-width: 50rem) {
+  .molecular-viewer .viewer-actions {
+    left: .75rem;
+    right: .75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .molecular-viewer .viewer-labels {
+    top: 5.25rem;
+    right: .75rem;
+    max-width: none;
+    overflow-wrap: anywhere;
+  }
+  .molecular-viewer .viewer-bottom {
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .molecular-viewer .viewer-bottom > * {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}

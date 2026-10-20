@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import "./styles/molecularViewer.css";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #F8FAFC;
+    color: #0F172A;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Reserve scrollbar width when the first result is inserted. No forced scroll,
+   floating input, or clipping is needed to keep the input at a stable position. */
+html {
+  scrollbar-gutter: stable;
+}
+
+.screening-app main > *,
+.screening-app main .grid > *,
+.screening-app header > div > div:last-child {
+  min-width: 0;
+}
+
+.screening-app header,
+.screening-app main,
+.screening-app main :is(p, dt, dd),
+.chemical-metadata {
+  overflow-wrap: anywhere;
+}
+
+.analysis-results {
+  overflow-anchor: none;
+}
+
+/* Keep the original RDKit viewBox and every atom/bond path untouched. Width is
+   governed by the grid cell; auto height uses the SVG's intrinsic aspect ratio. */
+.chemical-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chemical-depiction {
+  width: 100%;
+  max-width: 34rem;
+  min-width: 0;
+}
+
+.chemical-depiction > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+

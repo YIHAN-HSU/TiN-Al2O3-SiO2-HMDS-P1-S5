@@ -1,0 +1,12 @@
+{
+  "Toggle Oxidized/Hydroxylated TiN Surface Slab": "切換原始 TiN 表面示意（非實際表面計算）",
+  "TiN Surface Slab": "TiN 表面示意",
+  "Zoom In (Scroll Up)": "放大（向上捲動）",
+  "Zoom Out (Scroll Down)": "縮小（向下捲動）",
+  "Reset 3D Orientation & Centering": "重設 3D 視角與置中",
+  "SURFACE ID: TIN_OXOH_V01 · Oxidized/Hydroxylated TiN Lattice Interface": "表面識別碼：TIN_OXOH_V01；原始模型的氧化／羥基化 TiN 晶格示意",
+  "OPTIMIZATION:": "示意最佳化方法：",
+  "CONFORMER ENERGY:": "舊版示意能量（非真實構形能）：",
+  "ATOM #": "原子編號 #",
+  "DRAG TO ROTATE · SCROLL TO ZOOM · HOVER ATOM": "拖曳旋轉；捲動縮放；游標指向原子"
+}

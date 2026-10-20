@@ -1,0 +1,415 @@
+{
+  "id": "UNIVERSAL_HYPOTHETICAL_ADSORPTION_ENGINE",
+  "version": "P1-S5-HYPOTHETICAL-1.0.0",
+  "unit": "Scenario Unit (SU)",
+  "status": [
+    "HYPOTHETICAL_SIMULATION",
+    "NOT_VALIDATED",
+    "NOT_PHYSICAL_DELTA_G"
+  ],
+  "supported_elements": [
+    "H",
+    "C",
+    "N",
+    "O",
+    "F",
+    "P",
+    "S",
+    "Si",
+    "Cl",
+    "Br",
+    "I"
+  ],
+  "maximum_heavy_atoms": 256,
+  "support_policy": "Single connected neutral closed-shell carbon-containing molecule; explicit resource limit; no metals, salts, radicals or charged species.",
+  "parameters": {
+    "global.mw_scale": {
+      "value": 180,
+      "minimum": 90,
+      "maximum": 360,
+      "unit": "g/mol",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.tpsa_scale": {
+      "value": 60,
+      "minimum": 30,
+      "maximum": 120,
+      "unit": "angstrom2",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.hb_scale": {
+      "value": 4,
+      "minimum": 2,
+      "maximum": 8,
+      "unit": "count",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.rot_scale": {
+      "value": 8,
+      "minimum": 4,
+      "maximum": 16,
+      "unit": "count",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.logp_scale": {
+      "value": 3,
+      "minimum": 1.5,
+      "maximum": 6,
+      "unit": "dimensionless",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.ring_scale": {
+      "value": 3,
+      "minimum": 1.5,
+      "maximum": 6,
+      "unit": "count",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.steric_scale": {
+      "value": 3,
+      "minimum": 1,
+      "maximum": 6,
+      "unit": "count",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.carbonyl_scale": {
+      "value": 2,
+      "minimum": 1,
+      "maximum": 4,
+      "unit": "count",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.volume_scale": {
+      "value": 180,
+      "minimum": 90,
+      "maximum": 360,
+      "unit": "angstrom3",
+      "meaning": "Assumed normalization scale, not an adsorption coefficient.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.aromatic_coupling": {
+      "value": 0.4,
+      "minimum": 0,
+      "maximum": 0.8,
+      "unit": "dimensionless",
+      "meaning": "Nonlinear aromatic/contact coupling.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "global.fold_coupling": {
+      "value": 0.7,
+      "minimum": 0.1,
+      "maximum": 1.5,
+      "unit": "dimensionless",
+      "meaning": "Flexibility/size coupling in accessibility.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.dispersion": {
+      "value": 1.2,
+      "minimum": 0.4,
+      "maximum": 2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario dispersion. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.polar": {
+      "value": 1.6,
+      "minimum": 0.4,
+      "maximum": 2.5,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario polar. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.hbond": {
+      "value": 1.8,
+      "minimum": 0.4,
+      "maximum": 2.8,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario hbond. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.carbonyl": {
+      "value": 0.7,
+      "minimum": 0.1,
+      "maximum": 1.5,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario carbonyl. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.hydrophobic": {
+      "value": 0.15,
+      "minimum": -0.5,
+      "maximum": 0.5,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario hydrophobic. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.fluorine": {
+      "value": 0.25,
+      "minimum": -0.6,
+      "maximum": 0.6,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario fluorine. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.packing": {
+      "value": 0.6,
+      "minimum": 0.1,
+      "maximum": 1.6,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario packing. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.steric": {
+      "value": 0.8,
+      "minimum": 0.1,
+      "maximum": 1.8,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario steric. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.flexibility": {
+      "value": 0.4,
+      "minimum": -0.5,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario flexibility. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.oh_crowding": {
+      "value": 0.8,
+      "minimum": 0.1,
+      "maximum": 2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario oh_crowding. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.oh_activity": {
+      "value": 0.85,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario oh_activity. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.surface_polarity": {
+      "value": 0.85,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario surface_polarity. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.tms_coverage": {
+      "value": 0,
+      "minimum": 0,
+      "maximum": 0,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario tms_coverage. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "SiO2.shape": {
+      "value": 0.15,
+      "minimum": 0,
+      "maximum": 0.3,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario shape. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.dispersion": {
+      "value": 1.5,
+      "minimum": 0.5,
+      "maximum": 2.5,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario dispersion. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.polar": {
+      "value": 0.35,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario polar. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.hbond": {
+      "value": 0.35,
+      "minimum": 0,
+      "maximum": 1.5,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario hbond. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.carbonyl": {
+      "value": 0.2,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario carbonyl. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.hydrophobic": {
+      "value": 1,
+      "minimum": -0.5,
+      "maximum": 2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario hydrophobic. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.fluorine": {
+      "value": -0.1,
+      "minimum": -0.6,
+      "maximum": 0.6,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario fluorine. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.packing": {
+      "value": 0.9,
+      "minimum": 0.1,
+      "maximum": 2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario packing. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.steric": {
+      "value": 0.6,
+      "minimum": 0.1,
+      "maximum": 2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario steric. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.flexibility": {
+      "value": 0.6,
+      "minimum": -0.5,
+      "maximum": 1.2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario flexibility. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.oh_crowding": {
+      "value": 0.6,
+      "minimum": 0.1,
+      "maximum": 2,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario oh_crowding. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.oh_activity": {
+      "value": 0.2,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario oh_activity. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.surface_polarity": {
+      "value": 0.15,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario surface_polarity. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.tms_coverage": {
+      "value": 0.85,
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario tms_coverage. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "HMDS_SiO2.shape": {
+      "value": 0.15,
+      "minimum": 0,
+      "maximum": 0.3,
+      "unit": "dimensionless / SU expression",
+      "meaning": "Assumed surface scenario shape. Coverage and OH activity are fractions, not measured site densities.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "MODEL_PARAMETER"
+    },
+    "sensitivity.medium_threshold": {
+      "value": 0.25,
+      "minimum": 0.25,
+      "maximum": 0.25,
+      "unit": "relative sampled span",
+      "meaning": "Assumed category threshold, not a statistical calibration.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "CLASSIFICATION_ONLY"
+    },
+    "sensitivity.high_threshold": {
+      "value": 0.75,
+      "minimum": 0.75,
+      "maximum": 0.75,
+      "unit": "relative sampled span",
+      "meaning": "Assumed category threshold, not a confidence level.",
+      "provenance": "ASSUMED_PARAMETER",
+      "role": "CLASSIFICATION_ONLY"
+    }
+  },
+  "presets": {
+    "BASELINE": {},
+    "OH_RICH": {
+      "HMDS_SiO2.tms_coverage": 0.35,
+      "HMDS_SiO2.oh_activity": 0.8,
+      "HMDS_SiO2.hbond": 1.2,
+      "SiO2.oh_activity": 1
+    },
+    "DISPERSION_DOMINATED": {
+      "HMDS_SiO2.tms_coverage": 0.95,
+      "HMDS_SiO2.dispersion": 2.3,
+      "HMDS_SiO2.hydrophobic": 1.8,
+      "SiO2.dispersion": 1.9,
+      "SiO2.hbond": 0.5
+    }
+  },
+  "sensitivity_method": "Deterministic one-at-a-time parameter endpoints around selected scenario; includes baseline. Sampled envelope, not a simultaneous global bound or confidence interval.",
+  "calibration": "NONE; no SU-to-eV conversion",
+  "formula": "See backend/s5_hypothetical.py::score_pair; bounded normalizations + nonlinear contacts / accessibility / surface interactions / penalties; no functional-group fixed-eV sum."
+}

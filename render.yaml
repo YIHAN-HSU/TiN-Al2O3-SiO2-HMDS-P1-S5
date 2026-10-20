@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: tin-al2o3-sio2-hmds-p1-s5
+    runtime: docker
+    branch: main
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: S5_PUBLIC_MODE
+        value: "1"
+      - key: PUBLIC_MAX_CONCURRENCY
+        value: "1"
+      - key: PUBLIC_DIST_DIR
+        value: dist
+      - key: PYTHON_EXECUTABLE
+        value: python
