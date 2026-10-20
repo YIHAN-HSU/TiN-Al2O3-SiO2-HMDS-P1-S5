@@ -1,3 +1,4 @@
+import adsorviaLogo from './assets/branding/adsorvia-logo.png';
 const IS_PUBLIC=import.meta.env.VITE_PUBLIC_MODE==='true';
 import {reasonZh,statusZh,featureZh,uiText} from './i18n/zhTW';
 import {SubstrateSelection,loadSelection} from './s4/SubstrateSelection';
@@ -337,16 +338,15 @@ export default function App() {
       {/* Top Header */}
       <header className="bg-white border-b border-slate-200 px-3 sm:px-6 py-3.5 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-3 sticky top-0 z-40">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-8 h-8 bg-slate-900 text-white flex items-center justify-center font-bold text-xs tracking-wider">
-            TiN
-          </div>
+          <img src={adsorviaLogo} alt="Adsorvia" width="64" height="64" className="w-14 h-14 sm:w-16 sm:h-16 object-contain shrink-0" />
           <div>
-            <h1 className="text-sm font-bold tracking-tight text-slate-900 flex items-center gap-2">
-              四底材分子吸附預測工作台
+            <h1 className="text-xl font-bold tracking-tight text-slate-900 flex flex-wrap items-center gap-2">
+              Adsorvia
               <span className="text-[10px] font-mono px-1.5 py-0.5 bg-cyan-100 text-cyan-800 font-medium">
                 P1-S5
               </span>
             </h1>
+            <p className="text-xs sm:text-sm text-slate-600">Molecular Surface Adsorption Platform</p>
             <p className="text-[11px] text-slate-500">
               探索性篩選；原始 TiN 模型識別碼：TIN_OXOH_LIT_V0.2
             </p>
