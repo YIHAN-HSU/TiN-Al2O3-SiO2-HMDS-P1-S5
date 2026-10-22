@@ -27,3 +27,7 @@
 !tests/public-regression.ts
 !Dockerfile
 !tests/http-acceptance.ts
+
+!scripts/generate-auth-secrets.ts
+!tests/auth-regression.ts
+!tests/secure-http-runner.ts

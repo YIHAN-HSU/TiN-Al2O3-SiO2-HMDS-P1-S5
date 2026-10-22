@@ -9,7 +9,11 @@
     "build:public": "node scripts/build-public.mjs",
     "build": "node scripts/build-public.mjs",
     "lint": "node node_modules/typescript/bin/tsc --noEmit",
-    "test:public": "node --import tsx tests/public-regression.ts"
+    "test:public": "node --import tsx tests/public-regression.ts",
+    "test:auth": "node --import tsx tests/auth-regression.ts",
+    "test:http:secure": "node --import tsx tests/secure-http-runner.ts",
+    "auth:hash": "node --import tsx scripts/generate-auth-secrets.ts hash",
+    "auth:secret": "node --import tsx scripts/generate-auth-secrets.ts session"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';import fs from 'node:fs';
 const base=process.env.TEST_BASE_URL||'http://127.0.0.1:3240';let checks:any[]=[];
+assert.ok(process.env.TEST_AUTH_COOKIE&&process.env.TEST_AUTH_CSRF,'Use npm run test:http:secure to create isolated random test credentials.');
+const nativeFetch=globalThis.fetch;
+function fetch(input:RequestInfo|URL,init:RequestInit={}){const headers=new Headers(init.headers);headers.set('Cookie',process.env.TEST_AUTH_COOKIE!);if(init.method==='POST'){headers.set('X-Adsorvia-CSRF',process.env.TEST_AUTH_CSRF!);if(!headers.has('Origin'))headers.set('Origin',process.env.TEST_AUTH_ORIGIN||base);}return nativeFetch(input,{...init,headers});}
+
 function check(name:string,f:()=>any){f();checks.push({name,status:'PASS'});}
 const surfaces=['TiN','Al2O3','SiO2','HMDS_SiO2'];
 async function post(body:any,route='/api/analyze'){return fetch(base+route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
@@ -14,4 +18,4 @@ const concurrentResults=await Promise.all(concurrent.filter(r=>r.status===200).m
 const invalid=await post({input_type:'SMILES',raw_text:'invalid smiles',substrates:surfaces});const error:any=await invalid.json();check('sanitized error',()=>{assert.equal(invalid.status,422);assert.ok(error.error.includes('解析'));assert.ok(!JSON.stringify(error).includes('C:\\'));});
 const sdf=await post({sdf_text:ethanol.geometry.mol_block+'\n$$$$\n'+ethanol.geometry.mol_block+'\n$$$$\n'},'/api/parse-sdf-options');const options:any=await sdf.json();check('multi SDF choices',()=>{assert.equal(sdf.status,200);assert.equal(options.options.length,2);});
 const cross=await fetch(base+'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://unrelated.example'},body:JSON.stringify({input_type:'SMILES',raw_text:'CCO',substrates:surfaces})});check('cross-origin submit rejected',()=>assert.equal(cross.status,403));
-const report={base,passed:checks.length,failed:0,checks,ethanol:ethanol.integrated_results.rows};fs.writeFileSync('deployment-audit/http-acceptance.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+const report={base,passed:checks.length,failed:0,checks,ethanol:ethanol.integrated_results.rows};fs.writeFileSync(process.env.TEST_REPORT_FILE||'deployment-audit/http-acceptance.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));

@@ -77,3 +77,10 @@ npm run test:public 驗證原始值、三種格式、單選／複選、SU／eV C
 記錄詳見 DEPLOYMENT_TEST_REPORT.md。模型數值未建立新的實驗準確率，不把 SU 稱為物理 ΔGads；公開服務也不執行表面 DFT。
 
 官方依據：[Render Docker](https://render.com/docs/docker)、[Web Services](https://render.com/docs/web-services)、[Blueprint](https://render.com/docs/blueprint-spec)、[Auto Deploy](https://render.com/docs/deploys)。
+
+
+## Adsorvia Secure Access（待第二階段部署）
+
+正式版新增單一共用密碼保護；所有科學引擎、係數及資料格式維持不變。請先閱讀 [AUTH_ACCESS.md](AUTH_ACCESS.md)。使用者已確認既有 Render 的 ADSORVIA_PASSWORD_HASH 與 ADSORVIA_SESSION_SECRET 設定完成；不讀取或記錄其值。缺少設定將安全拒絕存取。第二階段先在測試分支完成 Docker CI，全部通過才更新 main 並確認 Render Live；驗收狀態以指定 Commit 的實際結果為準。
+
+本機模型回歸不需網站密碼；登入與 HTTP 測試使用自動生成的隔離隨機憑證：npm run test:auth、npm run test:http:secure。

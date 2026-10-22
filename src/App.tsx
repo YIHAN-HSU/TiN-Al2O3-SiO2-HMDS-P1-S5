@@ -1,3 +1,4 @@
+import {authFetch as fetch,LogoutButton} from './auth/client';
 import adsorviaLogo from './assets/branding/adsorvia-logo.png';
 const IS_PUBLIC=import.meta.env.VITE_PUBLIC_MODE==='true';
 import {reasonZh,statusZh,featureZh,uiText} from './i18n/zhTW';
@@ -353,6 +354,7 @@ export default function App() {
           </div>
         </div>
 
+        <LogoutButton />
         {/* Navigation Tabs */}
         {!IS_PUBLIC&&<nav className="flex flex-wrap max-w-full items-center gap-1 bg-slate-100 p-1 border border-slate-200 text-xs">
           <button

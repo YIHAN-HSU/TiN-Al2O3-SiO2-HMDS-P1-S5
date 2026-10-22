@@ -31,6 +31,9 @@
     "src",
     "vite.config.ts",
     "public-server.ts",
-    "tests/public-regression.ts"
+    "tests/public-regression.ts",
+    "tests/auth-regression.ts",
+    "tests/secure-http-runner.ts",
+    "scripts/generate-auth-secrets.ts"
   ]
 }
